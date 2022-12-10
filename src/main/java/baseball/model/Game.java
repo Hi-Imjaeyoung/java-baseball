@@ -28,6 +28,12 @@ public class Game {
         }
         return inputNumbers;
     }
+    public boolean restartGame(String input){
+        if(input.equals("1")){
+            return true;
+        }
+        return false;
+    }
     private void isStrikeOrBall(int number,int index){
         if(computerNumber.get(index)==number){
             strike = strike+1;
