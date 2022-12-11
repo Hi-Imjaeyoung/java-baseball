@@ -2,8 +2,8 @@ package baseball.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,5 +40,15 @@ class GameTest {
     void BALLANDSTRIKE(){
         Game game = new Game(List.of(1,2,3));
         assertThat(game.compareNumbers("142")).isEqualTo("1볼 1스트라이크");
+    }
+    @DisplayName("난수 생성 테스트")
+    @Test
+    void RANDOMNUMBER(){
+        List<Integer> list = MakeRandom.MakeRandom();
+        Stream<Integer> stream = list.stream().distinct();
+        assertThat(list.size()==stream.toArray().length).isEqualTo(true);
+        list = List.of(1,1,1);
+        stream = list.stream().distinct();
+        assertThat(list.size()==stream.toArray().length).isEqualTo(false);
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Game {
     private List<Integer> computerNumber;
+    private InputException inputException = new InputException();
     private int strike,ball;
     public Game(List<Integer> numbers){
         this.computerNumber = numbers;
@@ -12,6 +13,7 @@ public class Game {
         this.ball =0;
     }
     public String compareNumbers(String input){
+        inputException.isBaseballNumber(input);
         resetCount();
         List<Integer> inputNumbers = convertNumbers(input);
         for(int i=0;i<3;i++){
@@ -23,12 +25,19 @@ public class Game {
     }
     public List<Integer> convertNumbers(String input){
         List<Integer> inputNumbers = new ArrayList<>();
-        for(int i=0 ;i<3;i++){
+        for(int i=0 ;i<Constant.LENGTH_NUMBER.length;i++){
             inputNumbers.add(Character.getNumericValue(input.charAt(i)));
         }
         return inputNumbers;
     }
+    public boolean isEnd(){
+        if(strike==3){
+            return true;
+        }
+        return false;
+    }
     public boolean restartGame(String input){
+        inputException.isRestartOrEndNumber(input);
         if(input.equals("1")){
             return true;
         }
